@@ -18,6 +18,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.3.RELEASE</version>
+    </parent>
+
     <groupId>com.gitqub</groupId>
     <artifactId>gitqub</artifactId>
     <packaging>pom</packaging>
@@ -25,13 +31,24 @@
     <name>GitQub</name>
     <version>1.0.0</version>
     <description>GitQub</description>
-
+    <!-- modules -->
+    <modules>
+        <module>gitqub-center</module>
+        <module>gitqub-config</module>
+        <module>gitqub-server</module>
+        <module>gitqub-ui</module>
+        <module>gitqub-common</module>
+        <module>gitqub-support</module>
+        <module>gitqub-api</module>
+        <module>gitqub-model</module>
+    </modules>
+    <!-- url -->
     <url>http://www.gitqub.com</url>
-
+    <!-- scm -->
     <scm>
         <url>https://github.com/qianmoQ/GitQub</url>
     </scm>
-
+    <!-- licenses -->
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -39,17 +56,26 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
+    <!-- developer -->
+    <developers>
+        <developer>
+            <name>qianmoQ</name>
+            <roles>
+                <role>owner</role>
+            </roles>
+        </developer>
+    </developers>
+    <!-- organization -->
     <organization>
         <name>Apache Software Foundation</name>
         <url>http://www.apache.org</url>
     </organization>
-
+    <!-- issueManagement -->
     <issueManagement>
         <system>jira</system>
         <url>http://jira.ttxit.com/projects/GITQUB</url>
     </issueManagement>
-
+    <!-- properties -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -57,7 +83,23 @@
         <java.version>1.8</java.version>
         <!-- plugins version -->
         <plugin.maven.compiler.version>3.2</plugin.maven.compiler.version>
+        <plugin.frontend.version>1.6</plugin.frontend.version>
+        <!-- dependencie version -->
+        <spring.cloud.version>1.0.0-SC</spring.cloud.version>
     </properties>
+    <!-- dependencyManagement -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <pluginRepositories>
     </pluginRepositories>
@@ -66,6 +108,14 @@
     </distributionManagement>
 
     <repositories>
+        <repository>
+            <id>nexus-ttxit</id>
+            <name>ttxit maven center</name>
+            <url>http://mooc.ttxit.com:8081/repository/maven/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <build>
@@ -82,6 +132,17 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${plugin.frontend.version}</version>
+                <configuration>
+                    <installDirectory>${project.basedir}</installDirectory>
+                    <workingDirectory>front</workingDirectory>
+                </configuration>
+                <executions>
+                </executions>
             </plugin>
         </plugins>
     </build>
