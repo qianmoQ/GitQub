@@ -84,6 +84,7 @@
         <!-- plugins version -->
         <plugin.maven.compiler.version>3.2</plugin.maven.compiler.version>
         <plugin.frontend.version>1.6</plugin.frontend.version>
+        <plugin.rpm.cersion>2.1.5</plugin.rpm.cersion>
         <!-- dependencie version -->
         <spring.cloud.version>1.0.0-SC</spring.cloud.version>
     </properties>
@@ -124,6 +125,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <!-- maven compile -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -133,6 +135,7 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+            <!-- maven frontend (angluarjs) -->
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
